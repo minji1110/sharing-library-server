@@ -14,7 +14,6 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/")
 public class BookController {
     private final BookService bookService;
     private static final String KAKAO_HOST ="https://dapi.kakao.com";

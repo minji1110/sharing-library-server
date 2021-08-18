@@ -10,6 +10,7 @@ public class BookLetter {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long letterId;
 
+    @Column(length = 100)
     private String letterContent;
 
     @JsonIgnore

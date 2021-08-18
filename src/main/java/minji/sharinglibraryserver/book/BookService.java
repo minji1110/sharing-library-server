@@ -17,7 +17,7 @@ public class BookService {
 
     public List<Book> getBooksByUser(long userId){
         User user=userJpaRepo.getById(userId);
-        List<Book> bookList=bookJpaRepo.findBooksByBookReader(user);
+        List<Book> bookList=bookJpaRepo.findBooksByUser(user);
         return bookList;
     }
 }

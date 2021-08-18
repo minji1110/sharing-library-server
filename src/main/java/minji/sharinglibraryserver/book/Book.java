@@ -1,5 +1,6 @@
 package minji.sharinglibraryserver.book;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import minji.sharinglibraryserver.user.User;
 
@@ -28,13 +29,11 @@ public class Book {
 
     private LocalDate bookEndDt;     //종료일시
 
-//    @JoinColumn(name="letterId")
-//    @JsonIgnore
     @OneToMany(mappedBy = "book")
     private List<BookLetter> bookLetterList=new ArrayList<>();  //fk - 글귀
 
-//    @JsonIgnore
+    @JsonIgnore
     @JoinColumn(name = "userId")
     @ManyToOne(fetch = FetchType.LAZY)
-    private User bookReader;    //fk - 등록자
+    private User user;    //fk - 등록자
 }
