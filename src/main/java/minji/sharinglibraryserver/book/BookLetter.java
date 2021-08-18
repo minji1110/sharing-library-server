@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import javax.persistence.*;
 
+import static javax.persistence.FetchType.*;
+
 @Entity
 @Getter
 public class BookLetter {
@@ -15,6 +17,6 @@ public class BookLetter {
 
     @JsonIgnore
     @JoinColumn(name = "bookId")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = LAZY)
     private Book book;
 }

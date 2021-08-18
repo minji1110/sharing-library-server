@@ -24,6 +24,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Book> userBookList=new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
-    private List<Book> userBookLikedList=new ArrayList<>();
+// 좋아요 표시한 책 목록 -> 나중에 생각(따로 엔티티를 만들어야?)
+//    @OneToMany(mappedBy = "user")
+//    private List<Book> userBookLikedList=new ArrayList<>();
 }
