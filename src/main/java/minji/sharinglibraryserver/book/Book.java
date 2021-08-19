@@ -1,7 +1,10 @@
 package minji.sharinglibraryserver.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import minji.sharinglibraryserver.user.User;
 
 import javax.persistence.*;
@@ -13,11 +16,14 @@ import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookId;    //pk
 
-    private long bookIsbn;  //isbn
+    private String bookIsbn;  //isbn
 
     private String bookTitle;   //제목
 
@@ -31,11 +37,13 @@ public class Book {
 
     private LocalDate bookEndDt;     //종료일시
 
+    private String bookImageUrl;    //책 이미지
+
     @OneToMany(mappedBy = "book")
     private List<BookLetter> bookLetterList=new ArrayList<>();  //fk - 글귀
 
     @JsonIgnore
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userId",nullable = false)
     @ManyToOne(fetch = LAZY)
     private User user;    //fk - 등록자
 }
