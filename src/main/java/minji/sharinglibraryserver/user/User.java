@@ -2,6 +2,7 @@ package minji.sharinglibraryserver.user;
 
 import lombok.Getter;
 import minji.sharinglibraryserver.book.Book;
+import minji.sharinglibraryserver.common.BaseTime;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Getter
-public class User {
+public class User extends BaseTime {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;    //pk
 

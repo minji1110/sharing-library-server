@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import minji.sharinglibraryserver.common.BaseTime;
 import minji.sharinglibraryserver.user.User;
 
 import javax.persistence.*;
@@ -19,7 +20,7 @@ import static javax.persistence.FetchType.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Book {
+public class Book extends BaseTime {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookId;    //pk
 
