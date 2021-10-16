@@ -17,7 +17,6 @@ public class BookLetter extends BaseTime {
     @Column(length = 100)
     private String letterContent;
 
-    @JsonIgnore
     @JoinColumn(name = "bookId")
     @ManyToOne(fetch = LAZY)
     private Book book;

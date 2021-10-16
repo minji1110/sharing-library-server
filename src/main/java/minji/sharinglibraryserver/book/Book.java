@@ -40,6 +40,7 @@ public class Book extends BaseTime {
 
     private String bookImageUrl;    //책 이미지
 
+    @JsonIgnore
     @OneToMany(mappedBy = "book")
     private List<BookLetter> bookLetterList=new ArrayList<>();  //fk - 글귀
 
