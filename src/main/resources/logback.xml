@@ -1,0 +1,34 @@
+<configuration>
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+
+    <!--Appender : 기본-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %clr(%-5level) -- [ %thread ] %clr(%logger{5}){cyan} - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <!--Appender : sql 색상 분리-->
+    <appender name="console-sql" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %clr(%-5level) -- [ %thread ] %clr(%logger{5}){cyan} - %clr(%msg){magenta} %n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="jdbc.sqltiming" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="console-sql"/>
+    </logger>
+
+    <logger name="jdbc.resultsettable" level="DEBUG"/>
+    <logger name="jdbc.resultset" level="OFF"/>
+    <logger name="jdbc.sqlonly" level="OFF"/>
+    <logger name="jdbc.audit" level="OFF"/>
+    <logger name="jdbc.connection" level="OFF"/>
+
+    <root level="INFO">
+        <appender-ref ref="console"></appender-ref>
+    </root>
+</configuration>
+
+
