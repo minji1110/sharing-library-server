@@ -2,6 +2,7 @@ package minji.sharinglibraryserver.book;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import minji.sharinglibraryserver.common.exception.InvalidateBookException;
 import minji.sharinglibraryserver.common.exception.InvalidateUserException;
 import minji.sharinglibraryserver.user.User;
 import minji.sharinglibraryserver.user.UserJpaRepo;
@@ -34,7 +35,7 @@ public class BookService {
 
     //책 단건조회
     public Book getBookById(long bookId) {
-        return bookJpaRepo.findById(bookId).get();
+        return bookJpaRepo.findById(bookId).orElseThrow(InvalidateBookException::new);
     }
 
     //사용자별 책 목록 조회

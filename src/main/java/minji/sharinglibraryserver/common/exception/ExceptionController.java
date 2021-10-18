@@ -17,9 +17,16 @@ public class ExceptionController {
     private final ResponseService responseService;
 
     @ExceptionHandler(InvalidateUserException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    private CommonResponse invalidateUserException(InvalidateUserException e){
-        log.info(e.getMessage());
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    private CommonResponse invalidateUserException(){
+        log.info(Exception.INVALIDATE_USER.getMessage());
         return responseService.getErrorResponse(Exception.INVALIDATE_USER.getCode(), Exception.INVALIDATE_USER.getMessage());
+    }
+
+    @ExceptionHandler(InvalidateBookException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    private CommonResponse invalidateBookException(){
+        log.info(Exception.INVALIDATE_BOOK.getMessage());
+        return responseService.getErrorResponse(Exception.INVALIDATE_BOOK.getCode(), Exception.INVALIDATE_BOOK.getMessage());
     }
 }
