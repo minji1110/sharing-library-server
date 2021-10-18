@@ -14,6 +14,12 @@ public class BookController {
     private final BookService bookService;
     private final ResponseService responseService;
 
+    //책 등록
+    @PostMapping(value="/book/{userId}")
+    public Book saveBook(@PathVariable long userId, @ModelAttribute KAKAOBookSearchDto kakaoBookSearchDto){
+        return bookService.saveBook(userId,kakaoBookSearchDto);
+    }
+
     //책 단건 조회
     @GetMapping(value = "/book/{bookId}")
     public SingleResponse<Book> getBookById(@PathVariable long bookId){
@@ -25,12 +31,6 @@ public class BookController {
     @GetMapping(value = "/books/{userId}")
     public ListResponse<Book> getBookList(@PathVariable long userId){
         return responseService.getListResponse(bookService.getBooksByUser(userId));
-    }
-
-    //책 등록
-    @PostMapping(value="/book/{userId}")
-    public Book saveBook(@PathVariable long userId, @ModelAttribute KAKAOBookSearchDto kakaoBookSearchDto){
-        return bookService.saveBook(userId,kakaoBookSearchDto);
     }
 }
 
