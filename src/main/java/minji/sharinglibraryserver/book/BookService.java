@@ -2,6 +2,7 @@ package minji.sharinglibraryserver.book;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import minji.sharinglibraryserver.common.exception.InvalidateUserException;
 import minji.sharinglibraryserver.user.User;
 import minji.sharinglibraryserver.user.UserJpaRepo;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,9 @@ public class BookService {
     private final UserJpaRepo userJpaRepo;
     private final BookJpaRepo bookJpaRepo;
 
-
     //책 저장
     public Book saveBook(long userId, KAKAOBookSearchDto kakaoBookSearchDto){
-        User user=userJpaRepo.getById(userId);
+        User user=userJpaRepo.findById(userId).orElseThrow(InvalidateUserException::new);
         Book book= Book.builder()
                 .bookTitle(kakaoBookSearchDto.title)
                 .bookAuthor(kakaoBookSearchDto.authors)
@@ -39,7 +39,7 @@ public class BookService {
 
     //사용자별 책 목록 조회
     public List<Book> getBooksByUser(long userId){
-        User user=userJpaRepo.findById(userId).get();
+        User user=userJpaRepo.findById(userId).orElseThrow(InvalidateUserException::new);
 
         List<Book> bookList=bookJpaRepo.findBooksByUser(user);
         return bookList;
