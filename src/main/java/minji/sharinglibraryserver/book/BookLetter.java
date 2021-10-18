@@ -1,8 +1,8 @@
 package minji.sharinglibraryserver.book;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import minji.sharinglibraryserver.common.BaseTime;
+import minji.sharinglibraryserver.user.User;
 
 import javax.persistence.*;
 
@@ -20,4 +20,8 @@ public class BookLetter extends BaseTime {
     @JoinColumn(name = "bookId")
     @ManyToOne(fetch = LAZY)
     private Book book;
+
+    @JoinColumn(name="userId")
+    @ManyToOne(fetch = LAZY)
+    private User user;
 }
