@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import minji.sharinglibraryserver.common.exception.InvalidateBookException;
 import minji.sharinglibraryserver.common.exception.InvalidateUserException;
+import minji.sharinglibraryserver.kakao.KakaoBookDocument;
 import minji.sharinglibraryserver.user.User;
 import minji.sharinglibraryserver.user.UserJpaRepo;
 import org.springframework.stereotype.Service;
@@ -20,13 +21,13 @@ public class BookService {
     private final BookJpaRepo bookJpaRepo;
 
     //책 저장
-    public Book saveBook(long userId, KAKAOBookSearchDto kakaoBookSearchDto){
+    public Book saveBook(long userId, KakaoBookDocument kakaoBookDocument){
         User user=userJpaRepo.findById(userId).orElseThrow(InvalidateUserException::new);
         Book book= Book.builder()
-                .bookTitle(kakaoBookSearchDto.title)
-                .bookAuthor(kakaoBookSearchDto.authors)
-                .bookIsbn(kakaoBookSearchDto.isbn)
-                .bookSummary(kakaoBookSearchDto.contents)
+                .bookTitle(kakaoBookDocument.getTitle())
+                .bookAuthor(kakaoBookDocument.getAuthors().get(0))
+                .bookIsbn(kakaoBookDocument.getIsbn())
+                .bookSummary(kakaoBookDocument.getContents())
                 .user(user)
                 .build();
 

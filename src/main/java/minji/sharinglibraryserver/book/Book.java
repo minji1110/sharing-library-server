@@ -22,23 +22,23 @@ import static javax.persistence.FetchType.*;
 @NoArgsConstructor
 public class Book extends BaseTime {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bookId;    //pk
+    private Long bookId;               //pk
 
-    private String bookIsbn;  //isbn
+    private String bookIsbn;          //isbn
 
-    private String bookTitle;   //제목
+    private String bookTitle;         //제목
 
-    private String bookAuthor;  //작가
+    private String bookAuthor;        //작가
 
-    private String bookSummary; //줄거리
+    private String bookSummary;       //줄거리
 
-    private int bookScore;  //평점
+    private int bookScore;            //평점
 
     private LocalDate bookStartDt;   //시작일시
 
     private LocalDate bookEndDt;     //종료일시
 
-    private String bookImageUrl;    //책 이미지
+    private String bookImageUrl;     //책 이미지
 
     @JsonIgnore
     @OneToMany(mappedBy = "book")

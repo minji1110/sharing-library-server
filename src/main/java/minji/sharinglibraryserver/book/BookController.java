@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import minji.sharinglibraryserver.common.response.ListResponse;
 import minji.sharinglibraryserver.common.response.ResponseService;
 import minji.sharinglibraryserver.common.response.SingleResponse;
+import minji.sharinglibraryserver.kakao.KakaoBookDocument;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,8 +17,8 @@ public class BookController {
 
     //책 등록
     @PostMapping(value="/book/{userId}")
-    public Book saveBook(@PathVariable long userId, @ModelAttribute KAKAOBookSearchDto kakaoBookSearchDto){
-        return bookService.saveBook(userId,kakaoBookSearchDto);
+    public SingleResponse<Book> saveBook(@PathVariable long userId, @ModelAttribute KakaoBookDocument kakaoBookDocument){
+        return responseService.getSingleResponse(bookService.saveBook(userId, kakaoBookDocument));
     }
 
     //책 단건 조회
