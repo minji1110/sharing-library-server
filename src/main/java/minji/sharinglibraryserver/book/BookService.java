@@ -9,7 +9,7 @@ import minji.sharinglibraryserver.user.User;
 import minji.sharinglibraryserver.user.UserJpaRepo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import java.time.LocalDate;
 import java.util.List;
 
 @Slf4j
@@ -34,6 +34,13 @@ public class BookService {
         return bookJpaRepo.save(book);
     }
 
+    //책 저장 이후 별점,시작일,종료일 등록
+    public Book addBookInfo(long bookId, int score, LocalDate startDt, LocalDate endDt) {
+        Book book=bookJpaRepo.findById(bookId).orElseThrow(InvalidateBookException::new);
+        book.addBookInfo(score,startDt,endDt);
+        return book;
+    }
+
     //책 단건조회
     public Book getBookById(long bookId) {
         return bookJpaRepo.findById(bookId).orElseThrow(InvalidateBookException::new);
@@ -46,4 +53,11 @@ public class BookService {
         List<Book> bookList=bookJpaRepo.findBooksByUser(user);
         return bookList;
     }
+
+    //책 삭제
+    public void deleteBookById(long bookId){
+        Book book=bookJpaRepo.findById(bookId).orElseThrow(InvalidateBookException::new);
+        bookJpaRepo.delete(book);
+    }
+
 }

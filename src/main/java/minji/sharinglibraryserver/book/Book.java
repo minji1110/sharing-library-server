@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import minji.sharinglibraryserver.book_letter.BookLetter;
 import minji.sharinglibraryserver.common.BaseTime;
 import minji.sharinglibraryserver.user.User;
 
@@ -48,4 +49,11 @@ public class Book extends BaseTime {
     @JoinColumn(name = "userId",nullable = false)
     @ManyToOne(fetch = LAZY)
     private User user;    //fk - 등록자
+
+    protected void addBookInfo(int score, LocalDate startDt, LocalDate endDt){
+        this.bookScore=score;
+        this.bookStartDt=startDt;
+        this.bookEndDt=endDt;
+    }
 }
+
