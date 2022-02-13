@@ -34,6 +34,13 @@ public class ResponseService{
         return response;
     }
 
+    //성공결과 응답
+    public CommonResponse getSuccessResponse(){
+        CommonResponse response=new CommonResponse();
+        setSuccessResponse(response);
+        return response;
+    }
+
    private void setSuccessResponse(CommonResponse response){
         response.code=0;
         response.success=true;
