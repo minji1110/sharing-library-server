@@ -8,10 +8,12 @@ import minji.sharinglibraryserver.common.exception.InvalidateUserException;
 import minji.sharinglibraryserver.user.User;
 import minji.sharinglibraryserver.user.UserJpaRepo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class BookLetterService {
     private final BookLetterJpaRepo bookLetterJpaRepo;
@@ -36,7 +38,8 @@ public class BookLetterService {
 
     //글귀 수정
     public BookLetter modifyBookLetter(long bookLetterId, String content) {
-        BookLetter bookLetter=bookLetterJpaRepo.getById(bookLetterId);
+        //fixme 오류 새로 만들기
+        BookLetter bookLetter=bookLetterJpaRepo.findById(bookLetterId).orElseThrow(InvalidateBookException::new);
         bookLetter.updateLetterContent(content);
 
         return bookLetter;

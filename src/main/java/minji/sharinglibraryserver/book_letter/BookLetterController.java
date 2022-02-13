@@ -36,7 +36,7 @@ public class BookLetterController {
 
     //글귀 수정
     @PatchMapping(value = "/bookletter/{bookLetterId}")
-    public SingleResponse<BookLetter> modifyBookLetter(@PathVariable long bookLetterId,String content){
+    public SingleResponse<BookLetter> modifyBookLetter(@PathVariable long bookLetterId,@RequestParam String content){
         return responseService.getSingleResponse(bookLetterService.modifyBookLetter(bookLetterId,content));
     }
 

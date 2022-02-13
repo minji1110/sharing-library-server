@@ -28,6 +28,7 @@ public class BookService {
                 .bookAuthor(kakaoBookDocument.getAuthors().get(0))
                 .bookIsbn(kakaoBookDocument.getIsbn())
                 .bookSummary(kakaoBookDocument.getContents())
+                .bookImageUrl(kakaoBookDocument.getThumbnail())
                 .user(user)
                 .build();
 

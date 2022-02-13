@@ -7,6 +7,7 @@ import minji.sharinglibraryserver.common.response.ListResponse;
 import minji.sharinglibraryserver.common.response.ResponseService;
 import minji.sharinglibraryserver.common.response.SingleResponse;
 import minji.sharinglibraryserver.kakao.KakaoBookDocument;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 
@@ -26,8 +27,8 @@ public class BookController {
     //책정보 추가
     @PatchMapping(value="/book/{bookId}")
     public SingleResponse<Book> addBookInfo(@PathVariable long bookId, @RequestParam int score,
-                                            @RequestParam(required=false)LocalDate startDt,
-                                            @RequestParam(required = false) LocalDate endDt){
+                                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDt,
+                                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate endDt){
         return responseService.getSingleResponse(bookService.addBookInfo(bookId,score,startDt,endDt));
     }
 
@@ -38,7 +39,7 @@ public class BookController {
          return result;
     }
 
-    //책 목록 조회
+    //사용자별 책 목록 조회
     @GetMapping(value = "/books/{userId}")
     public ListResponse<Book> getBookList(@PathVariable long userId){
         return responseService.getListResponse(bookService.getBooksByUser(userId));
