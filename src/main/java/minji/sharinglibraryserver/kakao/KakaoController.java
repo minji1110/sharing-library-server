@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,15 +16,15 @@ import java.net.URI;
 @Slf4j
 @RestController
 public class KakaoController {
-    private static final String host="https://dapi.kakao.com";
-    private static final String searchTitlePath ="/v3/search/book";
-    private static final String apiKey="1345794fdd4b8c268cc7ff2b244e7dbf";  //fixme 비공개처리
+    @Value("${kakao.host}") private String host;
+    @Value("${kakao.search_book_path}") private String searchBookPath;
+    @Value("${kakao.api_key}") private String apiKey;
 
     @GetMapping(value="/book/search")
-    public KakaoBookResult searchBook(@RequestParam String title) throws  JsonProcessingException {
+    public KakaoBookResult searchBook(@RequestParam String title) throws JsonProcessingException {
         URI kakaoAPI = UriComponentsBuilder
                 .fromUriString(host)
-                .path(searchTitlePath)
+                .path(searchBookPath)
                 .queryParam("target","title")
                 .queryParam("query",title)
                 .build()
