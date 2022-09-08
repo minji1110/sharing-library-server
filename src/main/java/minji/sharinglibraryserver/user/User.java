@@ -24,4 +24,8 @@ public class User extends BaseTime {
 
     @OneToMany(mappedBy = "user")
     private List<Book> userBookList=new ArrayList<>();
+
+    public void addBookList(Book book){
+        userBookList.add(book);
+    }
 }
