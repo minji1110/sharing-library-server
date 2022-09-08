@@ -15,11 +15,14 @@
         </encoder>
     </appender>
 
-    <logger name="jdbc.sqltiming" additivity="false">
-        <level value="DEBUG"/>
-        <appender-ref ref="console-sql"/>
-    </logger>
+<!--    <logger name="jdbc.sqltiming" additivity="false">-->
+<!--        <level value="DEBUG"/>-->
+<!--        <appender-ref ref="console-sql"/>-->
+<!--    </logger>-->
 
+    <logger name="jdbc" level="OFF"/>
+
+    <logger name="jdbc.sqltiming" level="OFF"/>
     <logger name="jdbc.resultsettable" level="DEBUG"/>
     <logger name="jdbc.resultset" level="OFF"/>
     <logger name="jdbc.sqlonly" level="OFF"/>
