@@ -36,7 +36,7 @@ public class BookService {
     }
 
     //책 저장 이후 별점,시작일,종료일 등록
-    public Book addBookInfo(long bookId, int score, LocalDate startDt, LocalDate endDt) {
+    public Book addBookInfoByPatch(long bookId, int score, LocalDate startDt, LocalDate endDt) {
         Book book=bookJpaRepo.findById(bookId).orElseThrow(InvalidateBookException::new);
         book.addBookInfo(score,startDt,endDt);
         return book;

@@ -28,7 +28,6 @@ public class BookLetter extends BaseTime {
     @JoinColumn(name = "bookId")
     @ManyToOne(fetch = LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private Book book;
 
     @JoinColumn(name="userId")

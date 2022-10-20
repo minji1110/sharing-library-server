@@ -1,5 +1,6 @@
 package minji.sharinglibraryserver.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import minji.sharinglibraryserver.book.Book;
 import minji.sharinglibraryserver.common.BaseTime;
@@ -7,6 +8,8 @@ import minji.sharinglibraryserver.common.BaseTime;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
@@ -22,7 +25,8 @@ public class User extends BaseTime {
 
     private String userNickName;    //닉네임
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = LAZY)
+    @JsonIgnore
     private List<Book> userBookList=new ArrayList<>();
 
     public void addBookList(Book book){

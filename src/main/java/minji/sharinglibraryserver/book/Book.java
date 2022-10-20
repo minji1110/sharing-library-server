@@ -1,13 +1,11 @@
 package minji.sharinglibraryserver.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import minji.sharinglibraryserver.book_letter.BookLetter;
 import minji.sharinglibraryserver.common.BaseTime;
 import minji.sharinglibraryserver.user.User;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -18,6 +16,7 @@ import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,8 +30,10 @@ public class Book extends BaseTime {
 
     private String bookAuthor;        //작가
 
+    @Column(length = 1000)
     private String bookSummary;       //줄거리
 
+    @ColumnDefault("-1")
     private int bookScore;            //평점
 
     private LocalDate bookStartDt;   //시작일시

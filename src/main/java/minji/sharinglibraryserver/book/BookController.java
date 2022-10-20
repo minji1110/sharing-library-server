@@ -20,16 +20,16 @@ public class BookController {
 
     //책 등록
     @PostMapping(value="/book/{userId}")
-    public SingleResponse<Book> saveBook(@PathVariable long userId, @ModelAttribute KakaoBookDocument kakaoBookDocument){
+    public SingleResponse<Book> saveBook(@PathVariable long userId, @RequestBody KakaoBookDocument kakaoBookDocument){
         return responseService.getSingleResponse(bookService.saveBook(userId, kakaoBookDocument));
     }
 
     //책정보 추가
     @PatchMapping(value="/book/{bookId}")
-    public SingleResponse<Book> addBookInfo(@PathVariable long bookId, @RequestParam int score,
+    public SingleResponse<Book> addBookInfoByPatch(@PathVariable long bookId, @RequestParam int score,
                                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDt,
                                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate endDt){
-        return responseService.getSingleResponse(bookService.addBookInfo(bookId,score,startDt,endDt));
+        return responseService.getSingleResponse(bookService.addBookInfoByPatch(bookId,score,startDt,endDt));
     }
 
     //책 단건 조회

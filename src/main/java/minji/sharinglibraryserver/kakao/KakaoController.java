@@ -21,12 +21,17 @@ public class KakaoController {
     @Value("${kakao.api_key}") private String apiKey;
 
     @GetMapping(value="/book/search")
-    public KakaoBookResult searchBook(@RequestParam String title) throws JsonProcessingException {
+    public KakaoBookResult searchBook(@RequestParam String query,
+                                      @RequestParam(required=false) int page,
+                                      @RequestParam(required=false) int size) throws JsonProcessingException {
+        // 사용 가능한 값: title(제목), isbn (ISBN), publisher(출판사), person(인명)
+
         URI kakaoAPI = UriComponentsBuilder
                 .fromUriString(host)
                 .path(searchBookPath)
-                .queryParam("target","title")
-                .queryParam("query",title)
+                .queryParam("query",query)
+                .queryParam("page",page)
+                .queryParam("size",size)
                 .build()
                 .toUri();
         System.out.println("kakaoAPI = " + kakaoAPI);
