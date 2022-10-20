@@ -2,7 +2,7 @@
     <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
 
     <!--Appender : 기본-->
-    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %clr(%-5level) -- [ %thread ] %clr(%logger{5}){cyan} - %msg %n</pattern>
         </encoder>
@@ -20,8 +20,6 @@
 <!--        <appender-ref ref="console-sql"/>-->
 <!--    </logger>-->
 
-    <logger name="jdbc" level="OFF"/>
-
     <logger name="jdbc.sqltiming" level="OFF"/>
     <logger name="jdbc.resultsettable" level="DEBUG"/>
     <logger name="jdbc.resultset" level="OFF"/>
@@ -30,7 +28,7 @@
     <logger name="jdbc.connection" level="OFF"/>
 
     <root level="INFO">
-        <appender-ref ref="console"></appender-ref>
+        <appender-ref ref="STDOUT"></appender-ref>
     </root>
 </configuration>
 
