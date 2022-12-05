@@ -51,7 +51,7 @@ public class BookService {
     public List<Book> getBooksByUser(long userId){
         User user=userJpaRepo.findById(userId).orElseThrow(InvalidateUserException::new);
 
-        List<Book> bookList=bookJpaRepo.findBooksByUser(user);
+        List<Book> bookList=bookJpaRepo.findBooksByUserOrderByBookIdDesc(user);
         return bookList;
     }
 
